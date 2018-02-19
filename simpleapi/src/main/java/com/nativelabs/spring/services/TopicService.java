@@ -16,13 +16,6 @@ public class TopicService {
     @Autowired
     private TopicRepository topicRepository;
 
-    private List<Topic> topics = new ArrayList<>(Arrays.asList(
-            new Topic("Java", "Spring Boot", "Framwork"),
-            new Topic("Python","Django", "Framwork"),
-            new Topic("Ruby","Rails","Framework")
-    ));
-
-
     public List<Topic> getTopics() {
         List<Topic> topics = new ArrayList<>();
         topicRepository.findAll().forEach(topics::add);
