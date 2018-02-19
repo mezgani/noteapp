@@ -1,8 +1,22 @@
-package com.nativelabs.spring.topic;
+package com.nativelabs.spring.domain;
 
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "topics")
 public class Topic {
+
+    @Id
     private String id;
+
+    @NotNull
     private String name;
+
+    @NotNull
     private String description;
 
     public Topic(){
@@ -10,6 +24,7 @@ public class Topic {
     }
 
     public Topic(String id, String name, String description) {
+        super();
         this.id = id;
         this.name = name;
         this.description = description;

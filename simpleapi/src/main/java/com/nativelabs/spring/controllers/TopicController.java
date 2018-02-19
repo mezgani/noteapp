@@ -1,6 +1,8 @@
-package com.nativelabs.spring.topic;
+package com.nativelabs.spring.controllers;
 
 
+import com.nativelabs.spring.domain.Topic;
+import com.nativelabs.spring.services.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
