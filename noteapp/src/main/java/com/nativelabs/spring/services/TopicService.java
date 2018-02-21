@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -22,7 +21,7 @@ public class TopicService {
         return topics;
     }
 
-    public Topic getTopic(String id) {
+    public Topic getTopic(Integer id) {
         return topicRepository.findOne(id);
     }
 
@@ -30,11 +29,11 @@ public class TopicService {
         topicRepository.save(topic);
     }
 
-    public void updateTopic(Topic topic, String id){
-        topicRepository.save(topic);
+    public void updateTopic(Topic topic, Integer id) {
+            topicRepository.save(topic);
     }
 
-    public void deleteTopic(String id){
+    public void deleteTopic(Integer id){
         topicRepository.delete(id);
     }
 }
