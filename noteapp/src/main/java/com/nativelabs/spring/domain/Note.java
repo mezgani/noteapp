@@ -7,11 +7,12 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.lang.Integer;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static javax.persistence.CascadeType.PERSIST;
 
 @Entity
 @Table(name = "notes")
@@ -35,7 +36,7 @@ public class Note {
     @ElementCollection
     private List<String> tags = new ArrayList<String>();
 
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date createDate;
@@ -46,16 +47,20 @@ public class Note {
     @LastModifiedDate
     private Date updateDate;
 
-    //Many courses for one Topic
-    @ManyToOne
-            //(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = PERSIST)
     @JoinColumn(name = "topic_id", referencedColumnName = "id", nullable = false)
     private Topic topic;
 
     public Note() {
     }
 
-    public Note(Integer id, String title, List<String> tags, String description, Date createDate, Date updateDate, Integer  topicId) {
+    public Note(String title, List<String> tags, String description) {
+        this.title = title;
+        this.description = description;
+        this.tags = tags;
+    }
+
+    public Note(Integer id, String title, List<String> tags, String description, Date createDate, Date updateDate, Integer topicId) {
         super();
         this.id = id;
         this.title = title;
@@ -64,7 +69,9 @@ public class Note {
         this.createDate = createDate;
         this.updateDate = updateDate;
         this.topic = new Topic(topicId,"", "");
+
     }
+
 
     public Topic getTopic() {
         return this.topic;
@@ -123,7 +130,7 @@ public class Note {
         this.updateDate = updateDate;
     }
 
-    public Date whatIsTime(){
+    public Date setTime(){
         return new Timestamp(new Date().getTime());
     }
 }

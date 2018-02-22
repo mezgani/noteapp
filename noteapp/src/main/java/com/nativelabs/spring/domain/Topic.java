@@ -14,11 +14,12 @@ public class Topic {
     private Integer id;
 
     @NotNull
-    //@Column(unique = true)
+    @Column(unique = true)
     private String title;
 
     @NotNull
     private String description;
+
 
     public Topic(){
 
@@ -34,6 +35,7 @@ public class Topic {
         this.id = id;
         this.title = title;
         this.description = description;
+
     }
 
     public Integer getId() {
@@ -59,5 +61,4 @@ public class Topic {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }
